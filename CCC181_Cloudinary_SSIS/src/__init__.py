@@ -3,7 +3,12 @@ from flask import Flask, render_template, request, url_for, flash, redirect
 import pymysql.cursors
 from config import SECRET_KEY
 from .database import db_connection
+import cloudinary
+import os
 
+cloudinary.config(
+    cloudinary_url=os.getenv("CLOUDINARY_URL")
+)
 
 def create_app():
     app = Flask(__name__)
