@@ -129,8 +129,8 @@
     {% block colleges_table %}
     <!-- DISPLAY THE DATABASE INTO A TABLE -->
     <div class="container">
-        <table class="table table-hover table-striped align-middle">
-            <thead class="table-primary">
+         <table class="table table-hover align-middle text-center shadow-sm">
+            <thead class="table-primary text-center">
                 <tr>
                     <th>College Code</th>
                     <th>Collge Name</th>
@@ -142,64 +142,29 @@
         <tr>
             <td class="">{{row['collegeCode']}}</td>
             <td>{{row['collegeName']}}</td>
-        <td>
         <!-- EDIT FUNCTION TRIGGER BUTTON -->
-        <a href="" class="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#editModal{{ row['college_id'] }}">
-            Edit
-        </a>
-            <div class="modal fade" id="editModal{{ row['college_id'] }}" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
-                <div class="modal-dialog  modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary text-white">
-                    <h1 class="modal-title fs-5" id="editModal{{ row['college_id'] }}">Edit College Information</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+<td>
 
-                    <div class="modal-body">
-                        <form action="{{ url_for('Clbp.edit_college') }}" method="POST">
-                            <div class="form-group">
-                                <input type="hidden" name="college_id" value="{{ row['college_id'] }}" class="form-control" id="college_id">
-                                </div>
-                                <div class="form-group">
-                                <label for="collegeCode">Update College Code into:</label>
-                                <input type="text" name="collegeCodeEdit" value="{{ row['collegeCode'] }}" class="form-control" id="collegeCodeEdit" placeholder="Enter New College Code">
-                                </div>
-                                <div class="form-group">
-                                <label for="collegeName">Update College Name into:</label>
-                                <input type="text" name="collegeNameEdit" value="{{ row['collegeName'] }}" class="form-control" id="collegeNameEdit" placeholder="Enter New College Name">
-                                </div>
-                                </div>
-                                <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Update</button>
-                                </div>
-                            </form>
-        </td>
-        <!--DELETE FUNCTION-->
-        <td>
-              <button type="button" class="btn btn-outline-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#deleteModal{{ row['collegeCode'] }}">
-                Delete
-              </button>
-             <div class="modal fade" id="deleteModal{{ row['collegeCode'] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header bg-primary text-white">
-                      <h5 class="modal-title" id="deleteModal{{ row['collegeCode'] }}">Deletion</h5>
-                    </div>
-                    <div class="modal-body">
-                      Are you sure you want to delete this college information?
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                     <a href="/delete_college/{{ row['collegeCode'] }}" class="btn btn-danger">
-                Confirm
-            </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </td>
-        </tr>
+    <div class="d-flex justify-content-center gap-2">
+
+        <button
+            class="btn btn-outline-primary btn-sm rounded-pill"
+            data-bs-toggle="modal"
+            data-bs-target="#editModal{{ row['college_id'] }}">
+            Edit
+        </button>
+
+        <button
+            class="btn btn-outline-danger btn-sm rounded-pill"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteModal{{ row['collegeCode'] }}">
+            Delete
+        </button>
+
+    </div>
+
+</td>
+
     {% endfor %}
             </tbody>
         </table>
