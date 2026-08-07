@@ -22,6 +22,9 @@ def courses():
 
     college_data = course_M.display_Colleges()
 
+    # KEEP ALL COURSES FOR FILTERS
+    filter_courses = course_data
+
     total_courses = len(course_data)
 
     page = request.args.get('page', 1, type=int)
@@ -30,14 +33,18 @@ def courses():
     start_Page = (page - 1) * per_Page
     end_Page = start_Page + per_Page
 
+    # ONLY FOR TABLE
     courses_on_Page = course_data[start_Page:end_Page]
+
 
     total_Pages = (total_courses + per_Page - 1) // per_Page
     page_Number = list(range(1, total_Pages + 1))
 
+
     return render_template(
         '/courses/courses.html',
         Courses=courses_on_Page,
+        FilterCourses=filter_courses,
         Colleges=college_data,
         page=page,
         number_of_Pages=page_Number,
