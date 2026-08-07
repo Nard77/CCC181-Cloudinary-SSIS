@@ -90,45 +90,104 @@
 
    <!-- SEARCH FUNCTION -->
 
-   {% block search_function %}
-   <div class="container">
+{% block search_function %}
+
+<div class="container">
+
     <form action="{{ url_for('Cbp.course_search') }}" method="GET">
+
         <label>Search Filters:</label>
+
         <div class="input-group mb-3">
-            <select class="form-select btn btn-primary" aria-label="Default select example"
-            id="course_key_Code"  name="course_key_Code" onchange="this.form.submit()">
-                <option selected>By Course Code</option>
-                {% for row in Courses %}
-                <option value="{{ row['courseCode'] }}">{{ row['courseCode'] }}</option>
+
+            <!-- COURSE CODE -->
+            <select 
+                class="form-select"
+                id="course_key_Code"
+                name="course_key_Code">
+
+                <option value="">By Course Code</option>
+
+                {% for row in FilterCourses %}
+                <option 
+                    value="{{ row['courseCode'] }}"
+                    {% if course_key_Code == row['courseCode'] %}selected{% endif %}>
+                    {{ row['courseCode'] }}
+                </option>
                 {% endfor %}
+
             </select>
-            <select class="form-select btn btn-primary" aria-label="Default select example"
-            id="course_key_Name"  name="course_key_Name" onchange="this.form.submit()">
-                <option selected>By Course Name</option>
-                {% for row in Courses %}
-                <option value="{{ row['courseName'] }}">{{ row['courseName'] }}</option>
+
+
+            <!-- COURSE NAME -->
+            <select 
+                class="form-select"
+                id="course_key_Name"
+                name="course_key_Name">
+
+                <option value="">By Course Name</option>
+
+                {% for row in FilterCourses %}
+                <option 
+                    value="{{ row['courseName'] }}"
+                    {% if course_key_Name == row['courseName'] %}selected{% endif %}>
+                    {{ row['courseName'] }}
+                </option>
                 {% endfor %}
+
             </select>
-            <select class="form-select btn btn-primary" aria-label="Default select example"
-            id="college_key_Code"  name="college_key_Code" onchange="this.form.submit()">
-                <option selected>By College Code</option>
+
+
+            <!-- COLLEGE CODE -->
+            <select 
+                class="form-select"
+                id="college_key_Code"
+                name="college_key_Code">
+
+                <option value="">By College Code</option>
+
                 {% for row in Colleges %}
-                <option value="{{ row['collegeCode'] }}">{{ row['collegeCode'] }}</option>
+                <option 
+                    value="{{ row['collegeCode'] }}"
+                    {% if college_key_Code == row['collegeCode'] %}selected{% endif %}>
+                    {{ row['collegeCode'] }}
+                </option>
                 {% endfor %}
+
             </select>
+
+
         </div>
+
+
+        <!-- SEARCH INPUT -->
         <div class="input-group mb-3">
-            <input type="text" name="course_key" class="form-control" placeholder="Look for a course"
-             aria-label="Look for a course" aria-describedby="search-button">
-            <button type="submit" class="btn btn-primary" id="search-button">
+
+            <input 
+                type="text" 
+                name="course_key" 
+                class="form-control" 
+                placeholder="Look for a course"
+                value="{{ course_key }}"
+                aria-label="Look for a course"
+                aria-describedby="search-button">
+
+
+            <button 
+                type="submit" 
+                class="btn btn-primary" 
+                id="search-button">
+
                 Search
+
             </button>
-           </div>
+
         </div>
-    </div>
+
+    </form>
+
 </div>
-</div>
-</div>
+
 {% endblock %}
 <!-- SEARCH FUNCTION ENDS HERE -->
 
